@@ -37,7 +37,7 @@ public class GettingStartedApplication {
             statement.executeUpdate("INSERT INTO table_timestamp VALUES (now(), '" + getRandomString() + "')");
 
 
-            final var resultSet = statement.executeQuery("SELECT tick FROM table_timestamp");
+            final var resultSet = statement.executeQuery("SELECT * FROM table_timestamp");
             final var output = new ArrayList<>();
             while (resultSet.next()) {
                 output.add("Read from DB: " + resultSet.getTimestamp("tick") + resultSet.getString("random_string"));
