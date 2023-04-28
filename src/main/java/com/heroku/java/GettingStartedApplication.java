@@ -54,10 +54,17 @@ public class GettingStartedApplication {
 
     //https://www.baeldung.com/java-random-string
     public String getRandomString() {
-        byte[] array = new byte[7]; // length is bounded by 7
-        new Random().nextBytes(array);
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
 
-        return new String(array, StandardCharsets.UTF_8);
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return generatedString;
     }
 
     public static void main(String[] args) {
